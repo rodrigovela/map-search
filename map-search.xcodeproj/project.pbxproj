@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA59C9931E79CF38005A0BDA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9921E79CF38005A0BDA /* TabBarController.swift */; };
+		FA59C9951E79D25A005A0BDA /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9941E79D25A005A0BDA /* RegisterController.swift */; };
+		FA59C9971E79D272005A0BDA /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9961E79D272005A0BDA /* LogInController.swift */; };
 		FAF0C93A1E5676B900C5E52B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C9391E5676B900C5E52B /* AppDelegate.swift */; };
 		FAF0C93C1E5676B900C5E52B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C93B1E5676B900C5E52B /* ViewController.swift */; };
 		FAF0C93F1E5676B900C5E52B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF0C93D1E5676B900C5E52B /* Main.storyboard */; };
@@ -14,6 +17,7 @@
 		FAF0C9441E5676B900C5E52B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF0C9421E5676B900C5E52B /* LaunchScreen.storyboard */; };
 		FAF0C94F1E5676B900C5E52B /* map_searchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C94E1E5676B900C5E52B /* map_searchTests.swift */; };
 		FAF0C95A1E5676B900C5E52B /* map_searchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C9591E5676B900C5E52B /* map_searchUITests.swift */; };
+		FAF0C9681E56792400C5E52B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C9671E56792400C5E52B /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA59C9921E79CF38005A0BDA /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FA59C9941E79D25A005A0BDA /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		FA59C9961E79D272005A0BDA /* LogInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		FAF0C9361E5676B900C5E52B /* map-search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "map-search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF0C9391E5676B900C5E52B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF0C93B1E5676B900C5E52B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 		FAF0C9551E5676B900C5E52B /* map-searchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "map-searchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF0C9591E5676B900C5E52B /* map_searchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = map_searchUITests.swift; sourceTree = "<group>"; };
 		FAF0C95B1E5676B900C5E52B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAF0C9671E56792400C5E52B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,10 @@
 				FAF0C9401E5676B900C5E52B /* Assets.xcassets */,
 				FAF0C9421E5676B900C5E52B /* LaunchScreen.storyboard */,
 				FAF0C9451E5676B900C5E52B /* Info.plist */,
+				FAF0C9671E56792400C5E52B /* MapViewController.swift */,
+				FA59C9921E79CF38005A0BDA /* TabBarController.swift */,
+				FA59C9941E79D25A005A0BDA /* RegisterController.swift */,
+				FA59C9961E79D272005A0BDA /* LogInController.swift */,
 			);
 			path = "map-search";
 			sourceTree = "<group>";
@@ -259,7 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA59C9951E79D25A005A0BDA /* RegisterController.swift in Sources */,
+				FA59C9971E79D272005A0BDA /* LogInController.swift in Sources */,
 				FAF0C93C1E5676B900C5E52B /* ViewController.swift in Sources */,
+				FA59C9931E79CF38005A0BDA /* TabBarController.swift in Sources */,
+				FAF0C9681E56792400C5E52B /* MapViewController.swift in Sources */,
 				FAF0C93A1E5676B900C5E52B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +521,7 @@
 				FAF0C9601E5676B900C5E52B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAF0C9611E5676B900C5E52B /* Build configuration list for PBXNativeTarget "map-searchTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +530,7 @@
 				FAF0C9631E5676B900C5E52B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAF0C9641E5676B900C5E52B /* Build configuration list for PBXNativeTarget "map-searchUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +539,7 @@
 				FAF0C9661E5676B900C5E52B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
