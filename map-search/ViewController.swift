@@ -128,13 +128,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                                 let infoG = place
                                 let properties = infoG["properties"] as! NSDictionary
                                 let nameG = properties["nom_principal"] as! NSString as String
-                                let rate = properties["score"] as! NSString as String
+                                let rate = properties["score"] as! Int
                                 let geometry = infoG["geometry"] as! NSDictionary
                                 let coordinates = geometry["coordinates"] as! NSArray
                                 let lngG = coordinates[0] as! Double
                                 let latG = coordinates[1] as! Double
                                 
-                                let nuevo = ["nombre":nameG,"score":rate, "lat":String(latG),"lon":String(lngG)]
+                                let nuevo = ["nombre":nameG,"score":String(rate), "lat":String(latG),"lon":String(lngG)]
                                 self.items2.append(nuevo)
                             }
                             
@@ -155,6 +155,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
+    @IBAction func signOutButton(_ sender: Any) {
+        
+        UserDefaults.standard.set(false, forKey: "userSignedIn")
+        UserDefaults.standard.synchronize()
+        
+        //performSegue(withIdentifier: "signInSegue", sender: self)
+        //self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "login") 
+        self.present(vc, animated: true, completion: nil)
+        
+    }
 
 }
 

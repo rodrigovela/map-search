@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA57E4601E7B551F00FB36D3 /* AddFeatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57E45F1E7B551F00FB36D3 /* AddFeatureController.swift */; };
 		FA59C9931E79CF38005A0BDA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9921E79CF38005A0BDA /* TabBarController.swift */; };
 		FA59C9951E79D25A005A0BDA /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9941E79D25A005A0BDA /* RegisterController.swift */; };
 		FA59C9971E79D272005A0BDA /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59C9961E79D272005A0BDA /* LogInController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA57E45F1E7B551F00FB36D3 /* AddFeatureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFeatureController.swift; sourceTree = "<group>"; };
 		FA59C9921E79CF38005A0BDA /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FA59C9941E79D25A005A0BDA /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		FA59C9961E79D272005A0BDA /* LogInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				FA59C9921E79CF38005A0BDA /* TabBarController.swift */,
 				FA59C9941E79D25A005A0BDA /* RegisterController.swift */,
 				FA59C9961E79D272005A0BDA /* LogInController.swift */,
+				FA57E45F1E7B551F00FB36D3 /* AddFeatureController.swift */,
 			);
 			path = "map-search";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				FA59C9931E79CF38005A0BDA /* TabBarController.swift in Sources */,
 				FAF0C9681E56792400C5E52B /* MapViewController.swift in Sources */,
 				FAF0C93A1E5676B900C5E52B /* AppDelegate.swift in Sources */,
+				FA57E4601E7B551F00FB36D3 /* AddFeatureController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
