@@ -17,6 +17,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     @IBOutlet weak var categoryPickerView: UIPickerView!
     
+    var user:String? = nil
     let category = ["Restaurant","Cine","Comida"]
     let managerLocation = CLLocationManager()
     
@@ -28,6 +29,8 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
         self.featureTextField.delegate = self
         self.categoryPickerView.delegate = self
         self.categoryPickerView.dataSource = self
+        
+        user = UserDefaults.standard.value(forKey: "userID") as! String?
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,6 +121,51 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         displayAlertMessage(error.localizedDescription)
     }
+    
+    func upload() {
+        
+        let url = NSURL(string:"")
+        let request = NSMutableURLRequest(url: url! as URL)
+        
+        request.httpMethod = "POST"
+        let postString = "name=&category=&lat=&lon=user&"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            data, response, error in
+            
+            if error != nil {
+                print("error: \(error)")
+                return
+            }
+            
+            do {
+                
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary
+                
+                
+                if let parseJSON = json {
+                    
+                    let resultValue = parseJSON["status"] as! String!
+                    
+                    var messageToDisplay = parseJSON["status"] as! String!
+                    
+                    DispatchQueue.main.async {
+                        self.displayAlertMessage(messageToDisplay!)
+                    }
+                }
+                
+                
+            }
+            catch _{
+                print(error)
+            }
+            
+        }
+        task.resume()
+    }
+    
+    
     
     /*
     // MARK: - Navigation

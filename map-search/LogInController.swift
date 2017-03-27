@@ -20,6 +20,7 @@ class LogInController: UIViewController, UITextFieldDelegate{
         // Do any additional setup after loading the view.
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,20 +76,26 @@ class LogInController: UIViewController, UITextFieldDelegate{
                     let resultValue = parseJSON["status"] as! String!
                     print("result : \(resultValue)")
                     
+                    var userValue = parseJSON["user"] as! String!
+                    print("UserValue: \(userValue)")
+                    
                     if(resultValue! == "Success") {
                         
                         print("entra")
                         //Login is Succesfull
                         UserDefaults.standard.set(true, forKey: "userSignedIn")
+                        UserDefaults.standard.set(userValue!, forKey: "userID")
                         UserDefaults.standard.synchronize()
                         //
                         DispatchQueue.main.async{
+                            
+                            func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+                                let sigVista = segue.destination as! TabBarController
+                                sigVista.user = userValue!
+                            }
                             self.performSegue(withIdentifier: "tabBarSegue", sender: self)
                         }
                     }
-                    
-                    
-                    
                 }
             }
             catch _{

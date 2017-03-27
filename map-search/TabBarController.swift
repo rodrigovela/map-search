@@ -9,7 +9,9 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
+    var user:String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +25,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         let userSignedIn = UserDefaults.standard.bool(forKey: "userSignedIn")
-        
+        print("UserSignedIn: \(userSignedIn)")
         if(!userSignedIn){
             self.performSegue(withIdentifier: "signInSegue", sender: self)
         }

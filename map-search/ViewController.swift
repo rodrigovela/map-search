@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchText: UITextField!
     
+    var user:String = ""
     var items2: [Dictionary<String, String>] = []
     var items: [String] = ["Hello","Yes","No"]
     let managerLocation = CLLocationManager()
@@ -37,6 +38,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.isHidden = true
         configLocationManager()
+        
+        if let myString = UserDefaults.standard.value(forKey: "userID") as? String {
+            print("USER id: \(myString)")
+        }
     }
     
     func configLocationManager()
