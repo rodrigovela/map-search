@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     var items2: [Dictionary<String, String>] = []
     var items: [String] = ["Hello","Yes","No"]
     let managerLocation = CLLocationManager()
+    var flagToSearch = false
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -104,7 +105,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=50&outputFormat=application%2Fjson"
         
         print("Coordenadas: \(lat!),\(lon!)")
-        search(urls: urlGeoserver)
+        print(String(lat!))
+        
+        integrate(query)
+        
+        //search(urls: urlGeoserver)
+        
     }
 
     @IBAction func backgroundTap(_ sender: UIControl){
@@ -158,6 +164,54 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             dt.resume()
             print(items2.count)
         }
+    }
+    
+    func integrate(_ query: String){
+        
+        let lat = managerLocation.location?.coordinate.latitude
+        let lon = managerLocation.location?.coordinate.longitude
+        
+        let url = NSURL(string: "http://148.204.66.28/server/python.php")
+        let request = NSMutableURLRequest(url: url! as URL)
+        
+        request.httpMethod = "POST"
+        
+        let postString = "query=\(query)&lat=\(lat!)&lon=\(lon!)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            if error != nil {
+                print("Error: \(error)")
+            }
+            
+            do {
+                
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary
+                
+                if let parseJSON = json {
+                    
+                    let resultValue = parseJSON["status"] as!  String!
+                    let messageValue = parseJSON["message"] as! String!
+                    
+                    DispatchQueue.main.async{
+                        if resultValue=="success" {
+                            self.flagToSearch = true
+                            print("true")
+                        }
+                         let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=50&outputFormat=application%2Fjson"
+                        self.search(urls: urlGeoserver)
+                    }
+                    print("message : \(messageValue)")
+                }
+                
+            }
+            catch _ {
+                print("Error :\(error)")
+            }
+        }
+        task.resume()
     }
     
     @IBAction func signOutButton(_ sender: Any) {

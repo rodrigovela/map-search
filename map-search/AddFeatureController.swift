@@ -20,6 +20,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
     var user:String? = nil
     let category = ["Restaurant","Cine","Comida"]
     let managerLocation = CLLocationManager()
+    var categorySelected = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,11 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
             displayAlertMessage("Empty name")
             return
         }
+        
+        let lat = managerLocation.location?.coordinate.latitude
+        let lon = managerLocation.location?.coordinate.longitude
+        
+        addFeature(featureName)
     }
     
     @IBAction func tapBackground(_ sender: UIControl) {
@@ -87,6 +93,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categorySelected = category [row]
         return
     }
     
@@ -122,13 +129,17 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
         displayAlertMessage(error.localizedDescription)
     }
     
-    func upload() {
+    //AddFeature
+    func addFeature(_ name:String) {
         
-        let url = NSURL(string:"")
+        let lat = managerLocation.location?.coordinate.latitude
+        let lon = managerLocation.location?.coordinate.longitude
+        
+        let url = NSURL(string:"http://148.204.66.28/server/addfeatures.php")
         let request = NSMutableURLRequest(url: url! as URL)
         
         request.httpMethod = "POST"
-        let postString = "name=&category=&lat=&lon=user&"
+        let postString = "name=\(name)&category_id=\(categorySelected)&latitude=\(lat!)&longitude=\(lon!)&user_id=\(user!)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest){
