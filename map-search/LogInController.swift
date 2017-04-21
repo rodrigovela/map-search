@@ -75,7 +75,7 @@ class LogInController: UIViewController, UITextFieldDelegate{
                     
                     let resultValue = parseJSON["status"] as! String!
                     print("result : \(resultValue)")
-                    
+                    let messageValue = parseJSON["message"] as! String!
                     var userValue = parseJSON["user"] as! String!
                     print("UserValue: \(userValue)")
                     
@@ -94,6 +94,11 @@ class LogInController: UIViewController, UITextFieldDelegate{
                                 sigVista.user = userValue!
                             }
                             self.performSegue(withIdentifier: "tabBarSegue", sender: self)
+                        }
+                    }
+                    else{
+                        DispatchQueue.main.async{
+                            self.displayAlertMessage(messageValue!)
                         }
                     }
                 }

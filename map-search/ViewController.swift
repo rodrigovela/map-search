@@ -77,11 +77,28 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
+        let cellIdentifier = "PlaceTableViewCell"
         
-        cell.textLabel?.text = items2[indexPath.row]["nombre"]
-        cell.detailTextLabel?.text = "(\(items2[indexPath.row]["lat"]),\(items2[indexPath.row]["lon"]))"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)as? PlaceTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of PlaceTableViewCell.")
+        }
+        //let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
+        
+        cell.cellTitle.text = items2[indexPath.row]["nombre"]
+        
+        var textDetail = ""
+        
+        if items2[indexPath.row]["cod_d"] != "" {
+            textDetail.append("D")
+        }
+        if items2[indexPath.row]["cod_f"] != "" {
+            textDetail.append("F")
+        }
+        if items2[indexPath.row]["cod_w"] != "" {
+            textDetail.append("W")
+        }
+        //cell.detailTextLabel?.text = "(\(items2[indexPath.row]["lat"]),\(items2[indexPath.row]["lon"]))"
+        cell.cellDetail.text = textDetail
         //cell.detailTextLabel?.text = items2[indexPath.row]["nombre"]
         return cell
         
@@ -102,7 +119,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let lat = managerLocation.location?.coordinate.latitude
         let lon = managerLocation.location?.coordinate.longitude
         
-        let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=50&outputFormat=application%2Fjson"
+        let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=100&outputFormat=application%2Fjson"
         
         print("Coordenadas: \(lat!),\(lon!)")
         print(String(lat!))
@@ -140,12 +157,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                                 let properties = infoG["properties"] as! NSDictionary
                                 let nameG = properties["nom_principal"] as! NSString as String
                                 let rate = properties["score"] as! Int
+                                let nameA1 = properties["nom_alt1"] as! NSString as String
+                                let nameA2 = properties["nom_alt2"] as! NSString as String
+                                let cod_f = properties["cod_foursquare"] as! NSString as String
+                                let cod_d = properties["cod_denue"] as! NSString as String
+                                let cod_w = properties["cod_wikimapia"] as! NSString as String
                                 let geometry = infoG["geometry"] as! NSDictionary
                                 let coordinates = geometry["coordinates"] as! NSArray
                                 let lngG = coordinates[0] as! Double
                                 let latG = coordinates[1] as! Double
                                 
-                                let nuevo = ["nombre":nameG,"score":String(rate), "lat":String(latG),"lon":String(lngG)]
+                                let nuevo = ["nombre":nameG,"score":String(rate), "lat":String(latG),"lon":String(lngG),"nom_alt1":nameA1,"nom_alt2":nameA2,"cod_f":cod_f,"cod_d":cod_d,"cod_w":cod_w]
                                 self.items2.append(nuevo)
                             }
                             
@@ -200,7 +222,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                             self.flagToSearch = true
                             print("true")
                         }
-                         let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=50&outputFormat=application%2Fjson"
+                         let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query.replacingOccurrences(of: " ", with: "%20"))%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=100&outputFormat=application%2Fjson"
                         self.search(urls: urlGeoserver)
                     }
                     print("message : \(messageValue)")
