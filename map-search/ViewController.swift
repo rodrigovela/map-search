@@ -9,16 +9,23 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchText: UITextField!
+    @IBOutlet weak var categoryPickerView: UIPickerView!
+    @IBOutlet weak var keywordSwitch: UISwitch!
     
+    var urlGeoserver = ""
+    var categorySelected = 1
+    var catTag = "cine"
     var user:String = ""
     var items2: [Dictionary<String, String>] = []
     var items: [String] = ["Hello","Yes","No"]
     let managerLocation = CLLocationManager()
     var flagToSearch = false
+    let categories = ["Cine","Comida rápida","Gasolineras","Bancos","Estaciones Metro","Tiendas de Conveniencia"]
+    let categoriesTag = ["cine","comida%20rapida","gasolineras","bancos","estaciones%20metro","tiendas%20de%20conveniencia"]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -33,6 +40,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        categoryPickerView.dataSource = self
+        categoryPickerView.delegate = self
         searchText.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -94,8 +103,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if items2[indexPath.row]["cod_f"] != "" {
             textDetail.append("F")
         }
-        if items2[indexPath.row]["cod_w"] != "" {
-            textDetail.append("W")
+        if items2[indexPath.row]["cod_g"] != "" {
+            textDetail.append("G")
         }
         //cell.detailTextLabel?.text = "(\(items2[indexPath.row]["lat"]),\(items2[indexPath.row]["lon"]))"
         cell.cellDetail.text = textDetail
@@ -108,26 +117,40 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         print("You selected cell #\(indexPath.row)")
     }
     
+    @IBAction func go(_ sender: Any) {
+        let query = searchText.text!
+        self.flagToSearch = false
+        items2 = []
+        let lat = managerLocation.location?.coordinate.latitude
+        let lon = managerLocation.location?.coordinate.longitude
+        
+        if(keywordSwitch.isOn){
+        self.urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query.replacingOccurrences(of: " ", with: "%20"))%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))%20AND%20categoria%20LIKE%20%27\(catTag)%27&maxFeatures=100&outputFormat=application%2Fjson"
+        }
+        else{
+            self.urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))%20AND%20categoria%20LIKE%20%27\(catTag)%27&maxFeatures=100&outputFormat=application%2Fjson"
+        }
+        search(urls: self.urlGeoserver)
+    }
     
     @IBAction func textFieldDoneEditing(_ sender: UITextField) {
         sender.resignFirstResponder()
+        /*
         let query = searchText.text!
         print("\(query)")
-        
+        self.flagToSearch = false
         items2 = []
         
         let lat = managerLocation.location?.coordinate.latitude
         let lon = managerLocation.location?.coordinate.longitude
         
-        let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query)%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=100&outputFormat=application%2Fjson"
+        self.urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query.replacingOccurrences(of: " ", with: "%20"))%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=100&outputFormat=application%2Fjson"
+        search(urls: self.urlGeoserver)
         
-        print("Coordenadas: \(lat!),\(lon!)")
-        print(String(lat!))
-        
-        integrate(query)
+        //integrate(query)
         
         //search(urls: urlGeoserver)
-        
+        */
     }
 
     @IBAction func backgroundTap(_ sender: UIControl){
@@ -136,7 +159,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     func search(urls: String) -> Void
     {
-        
+        self.items2 = []
+        self.tableView.reloadData()
         let url = NSURL(string: urls)
         if url != nil{
             let sesion = URLSession.shared
@@ -161,13 +185,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                                 let nameA2 = properties["nom_alt2"] as! NSString as String
                                 let cod_f = properties["cod_foursquare"] as! NSString as String
                                 let cod_d = properties["cod_denue"] as! NSString as String
-                                let cod_w = properties["cod_wikimapia"] as! NSString as String
+                                let cod_g = properties["cod_google"] as! NSString as String
                                 let geometry = infoG["geometry"] as! NSDictionary
                                 let coordinates = geometry["coordinates"] as! NSArray
                                 let lngG = coordinates[0] as! Double
                                 let latG = coordinates[1] as! Double
                                 
-                                let nuevo = ["nombre":nameG,"score":String(rate), "lat":String(latG),"lon":String(lngG),"nom_alt1":nameA1,"nom_alt2":nameA2,"cod_f":cod_f,"cod_d":cod_d,"cod_w":cod_w]
+                                let nuevo = ["nombre":nameG,"score":String(rate), "lat":String(latG),"lon":String(lngG),"nom_alt1":nameA1,"nom_alt2":nameA2,"cod_f":cod_f,"cod_d":cod_d,"cod_g":cod_g]
                                 self.items2.append(nuevo)
                             }
                             
@@ -176,9 +200,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                             self.tableView.isHidden = false
                             
                             
+                            
                                                     }
                         catch _ {
                             print("No")}
+                        
+                        if self.items2.count <= 5 && !self.flagToSearch {
+                    
+                            self.integrate()
+                            self.flagToSearch = true
+                            
+                        }
                     }
                 }
             }
@@ -188,7 +220,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func integrate(_ query: String){
+    func integrate(){
         
         let lat = managerLocation.location?.coordinate.latitude
         let lon = managerLocation.location?.coordinate.longitude
@@ -198,7 +230,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         request.httpMethod = "POST"
         
-        let postString = "query=\(query)&lat=\(lat!)&lon=\(lon!)"
+        let postString = "category=\(categorySelected)&lat=\(lat!)&lon=\(lon!)"
+        print(postString)
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -214,18 +247,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 
                 if let parseJSON = json {
                     
+                    print(parseJSON)
                     let resultValue = parseJSON["status"] as!  String!
                     let messageValue = parseJSON["message"] as! String!
                     
                     DispatchQueue.main.async{
                         if resultValue=="success" {
-                            self.flagToSearch = true
                             print("true")
                         }
-                         let urlGeoserver = "http://148.204.66.28:8080/geoserver/opengeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opengeo:locales&cql_filter=strToLowerCase(nom_principal)%20LIKE%20%27%25\(query.replacingOccurrences(of: " ", with: "%20"))%25%27%20AND%20INTERSECTS(the_geom,%20BUFFER(POINT(\(lon!)%20\(lat!)),0.03))&maxFeatures=100&outputFormat=application%2Fjson"
-                        self.search(urls: urlGeoserver)
+                        self.search(urls: self.urlGeoserver)
                     }
-                    print("message : \(messageValue)")
+                    print("message : \(messageValue!)")
                 }
                 
             }
@@ -248,6 +280,25 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let vc = storyboard.instantiateViewController(withIdentifier: "login") 
         self.present(vc, animated: true, completion: nil)
         
+    }
+    
+    //PickerView
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categorySelected = row + 1
+        catTag = categoriesTag[row]
+        return
     }
 
 }

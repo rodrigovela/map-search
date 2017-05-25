@@ -23,12 +23,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         configMap()
-        /*let latitude = managerLocation.location?.coordinate.latitude
+        let latitude = managerLocation.location?.coordinate.latitude
         let longitude = managerLocation.location?.coordinate.longitude
         let span = MKCoordinateSpanMake(0.075, 0.075)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude!,longitude: longitude!), span: span)
         map.setRegion(region, animated: true)
-        */
+        
         
     }
     
@@ -52,6 +52,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             marker.longitude = Double(row["lon"]!)!
             let pin = MKPointAnnotation()
             pin.title = row["nombre"]
+            pin.subtitle = "\(row["lat"]!) & \(row["lon"]!)"
             //pin.subtitle = "(\(userlocation.coordinate.latitude),\(userlocation.coordinate.longitude))"
             pin.coordinate = marker
             map.addAnnotation(pin)
@@ -118,7 +119,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userlocation = locations[0] as CLLocation
+        /*let userlocation = locations[0] as CLLocation
         
         let span = MKCoordinateSpanMake(0.075, 0.075)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userlocation.coordinate.latitude,longitude: userlocation.coordinate.longitude), span: span)
@@ -131,7 +132,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         pin.title = "User Location"
         pin.subtitle = "(\(userlocation.coordinate.latitude),\(userlocation.coordinate.longitude))"
         pin.coordinate = marker
-        map.addAnnotation(pin)
+        map.addAnnotation(pin)*/
         //print("hola")
     }
     
