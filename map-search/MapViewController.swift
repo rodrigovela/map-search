@@ -79,6 +79,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if (authorizationStatus == CLAuthorizationStatus.notDetermined) {
             managerLocation.requestWhenInUseAuthorization()
             
+        }else if(authorizationStatus == CLAuthorizationStatus.denied){
+            managerLocation.requestWhenInUseAuthorization()
         } else {
             managerLocation.startUpdatingLocation()
         }

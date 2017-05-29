@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBOutlet weak var categoryPickerView: UIPickerView!
     @IBOutlet weak var keywordSwitch: UISwitch!
     
+    var location = true
     var urlGeoserver = ""
     var categorySelected = 1
     var catTag = "cine"
@@ -65,7 +66,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         if (authorizationStatus == CLAuthorizationStatus.notDetermined) {
             managerLocation.requestWhenInUseAuthorization()
-        } else {
+        }
+        else if(authorizationStatus == CLAuthorizationStatus.denied){
+            managerLocation.requestWhenInUseAuthorization()
+        }
+        else {
             managerLocation.startUpdatingLocation()
         }
     }
@@ -121,6 +126,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let query = searchText.text!
         self.flagToSearch = false
         items2 = []
+        
         let lat = managerLocation.location?.coordinate.latitude
         let lon = managerLocation.location?.coordinate.longitude
         

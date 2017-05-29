@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lne-2o-ceo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lne-2o-ceo">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -47,7 +47,7 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IeN-ZC-ZqF" id="uz9-d4-LmY">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="82.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="82.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm4-mt-Nej">
@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="eb8-Tc-eZ1">
-                                <rect key="frame" x="20" y="196" width="317" height="30"/>
+                                <rect key="frame" x="20" y="196" width="278" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -125,10 +125,6 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="hhM-bw-lXw"/>
                                 </connections>
                             </pickerView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-of-Lip">
-                                <rect key="frame" x="345" y="196" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbj-w4-ILd">
                                 <rect key="frame" x="318" y="167" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -148,6 +144,10 @@
                                     <action selector="go:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9N2-x2-0Ol"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-of-Lip">
+                                <rect key="frame" x="314" y="196" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -155,15 +155,15 @@
                             <constraint firstItem="eb8-Tc-eZ1" firstAttribute="leading" secondItem="Xbv-el-J14" secondAttribute="leading" id="CHU-3l-PXT"/>
                             <constraint firstItem="Fnh-iC-MMB" firstAttribute="top" secondItem="DeV-Qf-FqA" secondAttribute="bottom" constant="8" symbolic="YES" id="FWI-em-o4y"/>
                             <constraint firstItem="ANX-2d-EUQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="FkZ-8e-vXv"/>
-                            <constraint firstItem="eb8-Tc-eZ1" firstAttribute="trailing" secondItem="Xbv-el-J14" secondAttribute="trailing" constant="-57" id="K5a-NJ-Nyn"/>
+                            <constraint firstItem="eb8-Tc-eZ1" firstAttribute="trailing" secondItem="Xbv-el-J14" secondAttribute="trailing" constant="-96" id="K5a-NJ-Nyn"/>
                             <constraint firstItem="eb8-Tc-eZ1" firstAttribute="top" secondItem="Fnh-iC-MMB" secondAttribute="bottom" constant="27" id="Kc3-EZ-5BI"/>
                             <constraint firstItem="Ksw-Dl-g4Q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Kww-DX-QNm"/>
                             <constraint firstItem="Xbv-el-J14" firstAttribute="top" secondItem="eb8-Tc-eZ1" secondAttribute="bottom" constant="43" id="Ltz-xP-X5T"/>
-                            <constraint firstItem="Fnh-iC-MMB" firstAttribute="centerX" secondItem="eb8-Tc-eZ1" secondAttribute="centerX" constant="26.5" id="Nfx-4m-ZRQ"/>
+                            <constraint firstItem="Fnh-iC-MMB" firstAttribute="centerX" secondItem="eb8-Tc-eZ1" secondAttribute="centerX" constant="46" id="Nfx-4m-ZRQ"/>
                             <constraint firstItem="Ksw-Dl-g4Q" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Oxj-4V-6Sj"/>
                             <constraint firstItem="ANX-2d-EUQ" firstAttribute="leading" secondItem="DeV-Qf-FqA" secondAttribute="leading" id="SOs-7i-0T4"/>
                             <constraint firstItem="Ksw-Dl-g4Q" firstAttribute="trailing" secondItem="ANX-2d-EUQ" secondAttribute="trailing" id="XTo-o4-ctw"/>
-                            <constraint firstItem="ANX-2d-EUQ" firstAttribute="trailing" secondItem="eb8-Tc-eZ1" secondAttribute="trailing" constant="57" id="ecX-X3-w4R"/>
+                            <constraint firstItem="ANX-2d-EUQ" firstAttribute="trailing" secondItem="eb8-Tc-eZ1" secondAttribute="trailing" constant="96" id="ecX-X3-w4R"/>
                             <constraint firstItem="DeV-Qf-FqA" firstAttribute="leading" secondItem="eb8-Tc-eZ1" secondAttribute="leading" id="qBa-ho-GIX"/>
                             <constraint firstItem="DeV-Qf-FqA" firstAttribute="top" secondItem="ANX-2d-EUQ" secondAttribute="bottom" constant="8" id="wGa-OO-Ykg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xbv-el-J14" secondAttribute="bottom" constant="8" symbolic="YES" id="yBp-bz-1Tq"/>
