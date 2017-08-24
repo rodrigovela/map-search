@@ -18,7 +18,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var categoryPickerView: UIPickerView!
     
     var user:String? = nil
-    let category = ["Restaurant","Cine","Comida"]
+    let category = ["Cine","Comida rápida","Gasolineras","Bancos","Estaciones Metro","Tiendas de Conveniencia"]
     let managerLocation = CLLocationManager()
     var categorySelected = ""
     
