@@ -11,10 +11,10 @@ import CoreLocation
 
 class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
 
+    // MARK: Properties
     @IBOutlet weak var featureTextField: UITextField!
     @IBOutlet weak var latitudLabel: UILabel!
     @IBOutlet weak var longitudLabel: UILabel!
-    
     @IBOutlet weak var categoryPickerView: UIPickerView!
     
     var user:String? = nil
@@ -56,10 +56,17 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
         }
     }
  
+    // MARK: UITextFieldDelegate
     
-    @IBAction func textFieldDoneEditing(_ sender: UITextField) {
-        sender.resignFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
     
     @IBAction func addButton(_ sender: Any) {
         
@@ -146,7 +153,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
             data, response, error in
             
             if error != nil {
-                print("error: \(error)")
+                print("error: \(error.debugDescription)")
                 return
             }
             
@@ -159,7 +166,8 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
                     
                     let resultValue = parseJSON["status"] as! String!
                     
-                    var messageToDisplay = parseJSON["status"] as! String!
+                    
+                    let messageToDisplay = parseJSON["status"] as! String!
                     
                     DispatchQueue.main.async {
                         self.displayAlertMessage(messageToDisplay!)
@@ -169,7 +177,7 @@ class AddFeatureController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 
             }
             catch _{
-                print(error)
+                print(error.debugDescription)
             }
             
         }

@@ -24,13 +24,25 @@ class TabBarController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let userSignedIn = UserDefaults.standard.bool(forKey: "userSignedIn")
+        
+        /*let userSignedIn = UserDefaults.standard.bool(forKey: "userSignedIn")
         print("UserSignedIn: \(userSignedIn)")
         if(!userSignedIn){
             self.performSegue(withIdentifier: "signInSegue", sender: self)
         }
+        */
     }
     
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
+        
+        let isPressentingbyNavigationController = presentingViewController is UINavigationController
+        
+        if isPressentingbyNavigationController {
+            dismiss(animated: true, completion: nil)
+            UserDefaults.standard.set(false, forKey: "userSignedIn")
+            UserDefaults.standard.synchronize()
+        }
+    }
 
     /*
     // MARK: - Navigation

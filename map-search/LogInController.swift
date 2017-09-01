@@ -9,6 +9,8 @@
 import UIKit
 
 class LogInController: UIViewController, UITextFieldDelegate{
+    
+    // MARK: Properties
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,19 +20,22 @@ class LogInController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
-    @IBAction func textFieldDoneEditing(_ sender: UITextField) {
-        sender.resignFirstResponder()
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+    // MARK: Actions
     
     @IBAction func tapBackground(_ sender: UIControl){
         emailTextField.resignFirstResponder()
@@ -50,7 +55,10 @@ class LogInController: UIViewController, UITextFieldDelegate{
         
         requestToServer(email, password: password)
     }
-    func requestToServer(_ email:String, password:String) {
+    
+    // MARK: Private Buttons
+    
+    private func requestToServer(_ email:String, password:String) {
         
         let url = NSURL(string:"http://148.204.66.28/server/userLogin.php")
         let request = NSMutableURLRequest(url: url! as URL)
@@ -63,8 +71,8 @@ class LogInController: UIViewController, UITextFieldDelegate{
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             
-            if error != nil {
-                print("error=\(error)")
+            if let messageError = error {
+                print("Error=\(messageError)")
                 return
             }
             
@@ -74,21 +82,23 @@ class LogInController: UIViewController, UITextFieldDelegate{
                 if let parseJSON = json {
                     
                     let resultValue = parseJSON["status"] as! String!
-                    print("result : \(resultValue)")
+                    print("result : \(resultValue ?? "Fail")")
                     let messageValue = parseJSON["message"] as! String!
                     var userValue = parseJSON["user"] as! String!
-                    print("UserValue: \(userValue)")
+                    print("UserValue: \(userValue ?? "")")
                     
                     if(resultValue! == "Success") {
                         
                         print("entra")
+                        self.emailTextField.text = nil
+                        self.passwordTextField.text = nil
                         //Login is Succesfull
                         UserDefaults.standard.set(true, forKey: "userSignedIn")
                         UserDefaults.standard.set(userValue!, forKey: "userID")
                         UserDefaults.standard.synchronize()
                         //
                         DispatchQueue.main.async{
-                            
+                            //Pasar el identificador de usuario
                             func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
                                 let sigVista = segue.destination as! TabBarController
                                 sigVista.user = userValue!
@@ -104,7 +114,7 @@ class LogInController: UIViewController, UITextFieldDelegate{
                 }
             }
             catch _{
-                print(error)
+                print(error ?? "")
                 
             }
             
@@ -112,6 +122,9 @@ class LogInController: UIViewController, UITextFieldDelegate{
         }
         task.resume()
     }
+    
+    // MARK: Alert
+    
     func displayAlertMessage(_ message: String) {
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
@@ -120,6 +133,7 @@ class LogInController: UIViewController, UITextFieldDelegate{
         
         self.present(alert, animated: true, completion: nil)
     }
+    
     /*
     // MARK: - Navigation
 

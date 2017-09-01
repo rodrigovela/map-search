@@ -10,38 +10,59 @@ import UIKit
 
 class RegisterController: UIViewController, UITextFieldDelegate {
 
+    
+    // MARK: Properties
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var confirmTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.emailTextField.delegate = self
-        self.nameTextField.delegate = self
-        self.passwordTextField.delegate = self
-        self.confirmTextField.delegate = self
+        emailTextField.delegate = self
+        nameTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmTextField.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    @IBAction func textFieldDoneEditing(_ sender: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+        
+        if textField === confirmTextField {
+            //Check if passwords match
+            if passwordTextField.text != confirmTextField.text {
+                displayAlertMessage("Password no match")
+                return
+            }
+        }
+    }
+    
+    /*@IBAction func textFieldDoneEditing(_ sender: UITextField) {
         sender.resignFirstResponder()
-    }
+    }*/
     
-    @IBAction func tapBackground(_ sender: UIControl){
+    // MARK: Actions
+    
+    @IBAction func tapBackground(_ sender: UIControl) {
         emailTextField.resignFirstResponder()
         nameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         confirmTextField.resignFirstResponder()
     }
     
-    @IBAction func registerButton(_ sender: Any) {
+    
+    @IBAction func registerButton(_ sender: UIButton) {
         
         //Get strings from TextFields
         let name = nameTextField.text!
@@ -55,19 +76,17 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        //Check if passwords match
-        if(password != confirm) {
-            displayAlertMessage("Incorrect Passwords")
-            return
-        }
-        
         requestToServer(name, email: email, password: password)
     }
     
-    func requestToServer(_ name:String, email:String, password:String) {
+    // MARK: Private Methods
+    
+    private func requestToServer(_ name:String, email:String, password:String) {
+        
         //Request to server
         let url = NSURL(string: "http://148.204.66.28/server/userRegister.php")
         let request = NSMutableURLRequest(url: url! as URL)
+        
         //Http Body
         request.httpMethod = "POST"
         let postString = "name=\(name)&email=\(email)&password=\(password)"
@@ -77,8 +96,9 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         let task = URLSession.shared.dataTask(with: request as URLRequest){
             data, response, error in
             
-            if error != nil {
-                print("Error register:\(error)")
+            if let messageError = error {
+                print("Error register:\(messageError)")
+                return
             }
             
             do {
@@ -86,15 +106,16 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
                     let resultValue = parseJSON["status"] as! String!
-                    print("result: \(resultValue)")
                     
-                    var userSignedIn = false
+                    print("result: \(resultValue ?? "No hay")")
+                    
+                    /*var userSignedIn = false
                     
                     if(resultValue == "Success") {
                         userSignedIn = true
                     }
-                    
-                    var messageToDisplay = parseJSON["message"] as! String!
+                    */
+                    let messageToDisplay = parseJSON["message"] as! String!
                     
                     DispatchQueue.main.async{
                         self.displayAlertMessage(messageToDisplay!)
@@ -102,14 +123,16 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                     
                 }
             }
-            catch _{print("Error: \(error)")}
+            catch _{print("Error: \(error ?? "Break" as! Error)")}
             
         }
         
         task.resume()
     }
     
-    func displayAlertMessage(_ message: String) {
+    // MARK: Alert
+    
+    private func displayAlertMessage(_ message: String) {
         
         //Create Alert Controller
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
