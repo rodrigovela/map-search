@@ -27,13 +27,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         configLocationManager()
         // Center Map
         centerUserLocation()
-        // Retrieve data from other view
-        let search:ViewController = self.tabBarController?.viewControllers![0] as! ViewController
-        places = search.places
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Retrieve data from other view
+        let search:ViewController = self.tabBarController?.viewControllers![0] as! ViewController
+        places = search.places
         
         // Add annotation
         addAnnotations()

@@ -9,12 +9,12 @@
 import UIKit
 
 class PlaceTableViewCell: UITableViewCell {
+    
+    // MARK: Properties
 
     @IBOutlet weak var cellTitle: UILabel!
     @IBOutlet weak var cellDetail: UILabel!
-    
     @IBOutlet weak var distanceLabel: UILabel!
-    
     @IBOutlet weak var ratingControl: RatingControl!
     
     override func awakeFromNib() {

@@ -100,6 +100,7 @@
                                                 <constraint firstItem="TQ8-Gu-jYo" firstAttribute="top" secondItem="VJe-yb-Auc" secondAttribute="bottom" constant="15" id="9pz-lE-RdX"/>
                                                 <constraint firstItem="3fX-jI-02h" firstAttribute="top" secondItem="gm4-mt-Nej" secondAttribute="bottom" constant="7" id="DH2-gf-q2D"/>
                                                 <constraint firstItem="VJe-yb-Auc" firstAttribute="leading" secondItem="gm4-mt-Nej" secondAttribute="trailing" constant="5" id="I9s-Kx-j9G"/>
+                                                <constraint firstItem="VJe-yb-Auc" firstAttribute="leading" secondItem="gm4-mt-Nej" secondAttribute="trailing" constant="5" id="IDs-9q-Une"/>
                                                 <constraint firstItem="VJe-yb-Auc" firstAttribute="top" secondItem="uz9-d4-LmY" secondAttribute="topMargin" id="LSd-Z4-BWd"/>
                                                 <constraint firstItem="gm4-mt-Nej" firstAttribute="top" secondItem="uz9-d4-LmY" secondAttribute="topMargin" id="toz-kZ-uxf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VJe-yb-Auc" secondAttribute="trailing" id="uWe-ZN-P5B"/>
@@ -111,6 +112,7 @@
                                             <outlet property="cellTitle" destination="gm4-mt-Nej" id="4uf-iY-73w"/>
                                             <outlet property="distanceLabel" destination="VJe-yb-Auc" id="qRT-Nq-GgN"/>
                                             <outlet property="ratingControl" destination="3fX-jI-02h" id="a1U-pd-thV"/>
+                                            <segue destination="du8-z7-XXE" kind="show" identifier="ShowDetail" id="GKC-FL-Yhf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -453,6 +455,274 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSw-76-BGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1821.7391304347827" y="95.380434782608702"/>
+        </scene>
+        <!--Place View Controller-->
+        <scene sceneID="mnD-oF-XVc">
+            <objects>
+                <viewController id="du8-z7-XXE" customClass="PlaceViewController" customModule="map_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Jm-UL-7js"/>
+                        <viewControllerLayoutGuide type="bottom" id="oaU-cj-3hw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SpW-Hx-ZU4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jO-dB-azi">
+                                <rect key="frame" x="20" y="84" width="374" height="42"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="info">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="36" name="TrebuchetMS"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB0-Gf-3cJ">
+                                <rect key="frame" x="20" y="136" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="name">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-kA-Jyl">
+                                <rect key="frame" x="20" y="163" width="374" height="18.333333333333343"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="name">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-IR-env">
+                                <rect key="frame" x="20" y="196.33333333333334" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="alternative names">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsM-0U-V5X">
+                                <rect key="frame" x="20" y="223.33333333333334" width="374" height="18.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="alternative 1">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp5-yE-gyZ">
+                                <rect key="frame" x="20" y="251.66666666666663" width="374" height="18.333333333333371"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="alternative 2">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-U9-RFq">
+                                <rect key="frame" x="20" y="285" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="DENUE code">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGM-Ce-cvE">
+                                <rect key="frame" x="20" y="312" width="374" height="18.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="denue code">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cd-x6-GMZ">
+                                <rect key="frame" x="20" y="372.33333333333331" width="374" height="18.333333333333371"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="foursquare code">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8D-pI-LCb">
+                                <rect key="frame" x="20" y="345.33333333333331" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Foursquare code">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHU-0M-CKQ">
+                                <rect key="frame" x="20" y="405.66666666666669" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Google Places code">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8A-z0-eYh">
+                                <rect key="frame" x="20" y="432.66666666666674" width="374" height="18.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="google places code">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQk-aA-3br">
+                                <rect key="frame" x="20" y="466" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="distance from current location">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HY9-Td-ITM">
+                                <rect key="frame" x="20" y="493" width="374" height="18.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="distance">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-3k-MEC">
+                                <rect key="frame" x="20" y="526.33333333333337" width="374" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="rating">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="Futura-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hrj-Yu-hQa" customClass="RatingControl" customModule="map_search" customModuleProvider="target">
+                                <rect key="frame" x="133" y="553.33333333333337" width="148" height="44"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pgz-kA-Jyl" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="0AY-mf-W0y"/>
+                            <constraint firstItem="wp5-yE-gyZ" firstAttribute="top" secondItem="rsM-0U-V5X" secondAttribute="bottom" constant="10" id="1Tl-kZ-2dB"/>
+                            <constraint firstItem="Jdx-IR-env" firstAttribute="top" secondItem="Pgz-kA-Jyl" secondAttribute="bottom" constant="15" id="1aK-OW-noB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RHU-0M-CKQ" secondAttribute="trailing" id="1d2-gT-n0f"/>
+                            <constraint firstItem="dGM-Ce-cvE" firstAttribute="top" secondItem="N1k-U9-RFq" secondAttribute="bottom" constant="10" id="2oU-n1-qSa"/>
+                            <constraint firstItem="2Cd-x6-GMZ" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="3Jf-GS-Ser"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wp5-yE-gyZ" secondAttribute="trailing" id="60d-pt-q2K"/>
+                            <constraint firstItem="U5N-3k-MEC" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="6ji-Hc-vNt"/>
+                            <constraint firstItem="K8A-z0-eYh" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="7o2-cq-yng"/>
+                            <constraint firstItem="N1k-U9-RFq" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="7xK-kR-KZQ"/>
+                            <constraint firstItem="2Cd-x6-GMZ" firstAttribute="top" secondItem="f8D-pI-LCb" secondAttribute="bottom" constant="10" id="Bq8-0Y-eXe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Cd-x6-GMZ" secondAttribute="trailing" id="CjC-nL-bSx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jdx-IR-env" secondAttribute="trailing" id="FiC-Gt-dr3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HY9-Td-ITM" secondAttribute="trailing" id="Gwh-oL-LjM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dGM-Ce-cvE" secondAttribute="trailing" id="JBy-lP-Qwp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YB0-Gf-3cJ" secondAttribute="trailing" id="K4N-b8-58c"/>
+                            <constraint firstItem="RHU-0M-CKQ" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="LOC-FX-F2V"/>
+                            <constraint firstItem="f8D-pI-LCb" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="Lol-km-cLU"/>
+                            <constraint firstItem="Pgz-kA-Jyl" firstAttribute="top" secondItem="YB0-Gf-3cJ" secondAttribute="bottom" constant="10" id="MWy-5A-IKt"/>
+                            <constraint firstItem="wp5-yE-gyZ" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="NgP-5o-jEE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3jO-dB-azi" secondAttribute="trailing" id="Oke-IZ-mGl"/>
+                            <constraint firstItem="YB0-Gf-3cJ" firstAttribute="top" secondItem="3jO-dB-azi" secondAttribute="bottom" constant="10" id="Q9m-kr-Yg1"/>
+                            <constraint firstItem="rsM-0U-V5X" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="QCY-A4-KNB"/>
+                            <constraint firstItem="3jO-dB-azi" firstAttribute="top" secondItem="8Jm-UL-7js" secondAttribute="bottom" constant="20" id="QnJ-4A-LWG"/>
+                            <constraint firstItem="f8D-pI-LCb" firstAttribute="top" secondItem="dGM-Ce-cvE" secondAttribute="bottom" constant="15" id="ROM-qZ-3Eo"/>
+                            <constraint firstItem="HY9-Td-ITM" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="T8O-ZX-eui"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EQk-aA-3br" secondAttribute="trailing" id="ZWc-DT-FYZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rsM-0U-V5X" secondAttribute="trailing" id="a63-XB-Thx"/>
+                            <constraint firstItem="K8A-z0-eYh" firstAttribute="top" secondItem="RHU-0M-CKQ" secondAttribute="bottom" constant="10" id="aS6-Lb-fXb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K8A-z0-eYh" secondAttribute="trailing" id="aeL-JP-7o9"/>
+                            <constraint firstItem="EQk-aA-3br" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="bob-xn-k9I"/>
+                            <constraint firstItem="YB0-Gf-3cJ" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="c5u-bW-dkr"/>
+                            <constraint firstItem="3jO-dB-azi" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="cyq-Nt-bLU"/>
+                            <constraint firstItem="U5N-3k-MEC" firstAttribute="top" secondItem="HY9-Td-ITM" secondAttribute="bottom" constant="15" id="e9C-LE-Dy0"/>
+                            <constraint firstItem="RHU-0M-CKQ" firstAttribute="top" secondItem="2Cd-x6-GMZ" secondAttribute="bottom" constant="15" id="fXG-A0-aXP"/>
+                            <constraint firstItem="Hrj-Yu-hQa" firstAttribute="centerX" secondItem="SpW-Hx-ZU4" secondAttribute="centerX" id="hXF-k5-zxM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pgz-kA-Jyl" secondAttribute="trailing" id="jKG-41-DLk"/>
+                            <constraint firstItem="HY9-Td-ITM" firstAttribute="top" secondItem="EQk-aA-3br" secondAttribute="bottom" constant="10" id="jPF-n9-owQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N1k-U9-RFq" secondAttribute="trailing" id="lbM-dT-iF6"/>
+                            <constraint firstItem="EQk-aA-3br" firstAttribute="top" secondItem="K8A-z0-eYh" secondAttribute="bottom" constant="15" id="m93-uz-VcE"/>
+                            <constraint firstItem="N1k-U9-RFq" firstAttribute="top" secondItem="wp5-yE-gyZ" secondAttribute="bottom" constant="15" id="mfy-O7-dzj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f8D-pI-LCb" secondAttribute="trailing" id="vC8-U0-e91"/>
+                            <constraint firstItem="Hrj-Yu-hQa" firstAttribute="top" secondItem="U5N-3k-MEC" secondAttribute="bottom" constant="10" id="vfC-Vf-wqY"/>
+                            <constraint firstItem="Hrj-Yu-hQa" firstAttribute="centerX" secondItem="SpW-Hx-ZU4" secondAttribute="centerX" id="x2S-uY-oiD"/>
+                            <constraint firstItem="rsM-0U-V5X" firstAttribute="top" secondItem="Jdx-IR-env" secondAttribute="bottom" constant="10" id="xTq-Ew-gvx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U5N-3k-MEC" secondAttribute="trailing" id="xx8-BD-FRN"/>
+                            <constraint firstItem="dGM-Ce-cvE" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="zRP-Cf-15j"/>
+                            <constraint firstItem="Jdx-IR-env" firstAttribute="leading" secondItem="SpW-Hx-ZU4" secondAttribute="leadingMargin" id="zbJ-hP-Y8E"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alternative1Label" destination="rsM-0U-V5X" id="6r3-WX-cYx"/>
+                        <outlet property="alternative2Label" destination="wp5-yE-gyZ" id="aRi-d7-V2g"/>
+                        <outlet property="denueCodeLabel" destination="dGM-Ce-cvE" id="bmg-vx-rTQ"/>
+                        <outlet property="distanceLabel" destination="HY9-Td-ITM" id="aLn-Hi-pzd"/>
+                        <outlet property="foursquareCodeLabel" destination="2Cd-x6-GMZ" id="oG8-cf-NeE"/>
+                        <outlet property="googleCodeLabel" destination="K8A-z0-eYh" id="Wk3-D6-S4O"/>
+                        <outlet property="nameLabel" destination="Pgz-kA-Jyl" id="RZw-u2-1Cs"/>
+                        <outlet property="ratingControl" destination="Hrj-Yu-hQa" id="zal-1C-U8Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qx1-xl-G5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1108.6956521739132" y="832.33695652173924"/>
         </scene>
         <!--Map-->
         <scene sceneID="NYd-CN-0kn">

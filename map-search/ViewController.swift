@@ -34,15 +34,33 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     // MARK: Navigation
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let tabBarController = segue.destination as! UITabBarController
+        super.prepare(for: segue, sender: sender)
+        
+        /*let tabBarController = segue.destination as! UITabBarController
         let navigationController = tabBarController.viewControllers![1] as! UINavigationController
         let mapViewController = navigationController.topViewController as! MapViewController
         
-        mapViewController.places = places
+        mapViewController.places = places*/
         
-    }*/
+        guard let placeDetailViewController = segue.destination as? PlaceViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard  let selectedPlaceCell = sender as? PlaceTableViewCell else {
+            fatalError("unexpected sender: \(sender.debugDescription)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedPlaceCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let selectedPlace = places[indexPath.row]
+        placeDetailViewController.place = selectedPlace
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

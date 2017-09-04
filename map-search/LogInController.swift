@@ -54,6 +54,8 @@ class LogInController: UIViewController, UITextFieldDelegate{
         }
         
         requestToServer(email, password: password)
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     // MARK: Private Buttons
@@ -90,8 +92,8 @@ class LogInController: UIViewController, UITextFieldDelegate{
                     if(resultValue! == "Success") {
                         
                         print("entra")
-                        self.emailTextField.text = nil
-                        self.passwordTextField.text = nil
+                        self.emailTextField.text = ""
+                        self.passwordTextField.text = ""
                         //Login is Succesfull
                         UserDefaults.standard.set(true, forKey: "userSignedIn")
                         UserDefaults.standard.set(userValue!, forKey: "userID")
