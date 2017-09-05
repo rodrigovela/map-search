@@ -18,6 +18,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBOutlet weak var categoryPickerView: UIPickerView!
     @IBOutlet weak var keywordSwitch: UISwitch!
     
+    @IBOutlet weak var orderByRating: UIButton!
+    @IBOutlet weak var orderByDistance: UIButton!
+    
     var places = [Place]()
     
     var location = true
@@ -81,6 +84,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if let myString = UserDefaults.standard.value(forKey: "userID") as? String {
             print("USER id: \(myString)")
         }
+        orderByDistance.isHidden = true
     }
     
     private func configLocationManager()
@@ -150,7 +154,45 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     // MARK: Actions
     
-    @IBAction func go(_ sender: Any) {
+    @IBAction func orderByButton(_ sender: UIButton) {
+        
+        self.places.sort(by: { (Place, Place2) -> Bool in
+            if Place.rating > Place2.rating {
+                return true
+            }
+            else {
+                return false
+            }
+        } )
+        tableView.reloadData()
+        
+        sender.isEnabled = false
+        sender.isHidden = true
+        orderByDistance.isEnabled = true
+        orderByDistance.isHidden = false
+        
+    }
+    
+    @IBAction func orderByDistance(_ sender: UIButton) {
+        
+        self.places.sort(by: { (Place, Place2) -> Bool in
+            if Place.distance < Place2.distance {
+                return true
+            }
+            else {
+                return false
+            }
+        } )
+        tableView.reloadData()
+        sender.isEnabled = false
+        sender.isHidden = true
+        sender.tintColor = UIColor.gray
+        orderByRating.isEnabled = true
+        orderByRating.isHidden = false
+        
+    }
+    
+    @IBAction func go(_ sender: UIButton) {
         
         flagToSearch = false
         let query = searchText.text!
@@ -173,6 +215,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBAction func backgroundTap(_ sender: UIControl){
         searchText.resignFirstResponder()
     }
+    
+    
     
     // MARK: UITextFieldDelegate
     
@@ -232,8 +276,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let sesion = URLSession.shared
         let bloque = { (datos:Data?, resp: URLResponse?, error: Error?) -> Void in
                 let text = NSString(data: datos! as Data, encoding: String.Encoding.utf8.rawValue)
-                print(error.debugDescription)
-                print(text!)
+                //print(error.debugDescription)
+                //print(text!)
                 
                 if error == nil {
                     DispatchQueue.main.async{
@@ -272,6 +316,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                                 }
                             }
                             )
+                            //self.sortByButton.titleLabel?.text = "Order by rating"
                             self.tableView.reloadData()
                             self.tableView.isHidden = false
                             
@@ -293,7 +338,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             }
             let dt = sesion.dataTask(with: url! as URL, completionHandler: bloque)
             dt.resume()
-            print(places.count)
+            //print(places.count)
         }
     }
     
@@ -308,7 +353,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         request.httpMethod = "POST"
         
         let postString = "category=\(categorySelected)&lat=\(lat!)&lon=\(lon!)"
-        print(postString)
+        //print(postString)
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -325,7 +370,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 
                 if let parseJSON = json {
                     
-                    print(parseJSON)
+                    //print(parseJSON)
                     let resultValue = parseJSON["status"] as!  String!
                     let messageValue = parseJSON["message"] as! String!
                     

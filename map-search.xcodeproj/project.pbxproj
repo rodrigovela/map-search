@@ -14,6 +14,7 @@
 		FA7613E21F5DD0C80033026F /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7613E11F5DD0C80033026F /* PlaceViewController.swift */; };
 		FAA45A291F54B32800E6E78C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA45A281F54B32800E6E78C /* Place.swift */; };
 		FAA45A2B1F54ECC700E6E78C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA45A2A1F54ECC700E6E78C /* RatingControl.swift */; };
+		FAC8119B1F5E461D00F1D9C3 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC8119A1F5E461D00F1D9C3 /* PlaceAnnotation.swift */; };
 		FAF0C93A1E5676B900C5E52B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C9391E5676B900C5E52B /* AppDelegate.swift */; };
 		FAF0C93C1E5676B900C5E52B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C93B1E5676B900C5E52B /* ViewController.swift */; };
 		FAF0C93F1E5676B900C5E52B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF0C93D1E5676B900C5E52B /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		FA7613E11F5DD0C80033026F /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
 		FAA45A281F54B32800E6E78C /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		FAA45A2A1F54ECC700E6E78C /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		FAC8119A1F5E461D00F1D9C3 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		FAF0C9361E5676B900C5E52B /* map-search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "map-search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF0C9391E5676B900C5E52B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF0C93B1E5676B900C5E52B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				FAA45A281F54B32800E6E78C /* Place.swift */,
 				FAA45A2A1F54ECC700E6E78C /* RatingControl.swift */,
 				FA7613E11F5DD0C80033026F /* PlaceViewController.swift */,
+				FAC8119A1F5E461D00F1D9C3 /* PlaceAnnotation.swift */,
 			);
 			path = "map-search";
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				FA59C9951E79D25A005A0BDA /* RegisterController.swift in Sources */,
 				FA59C9971E79D272005A0BDA /* LogInController.swift in Sources */,
 				FAF0C93C1E5676B900C5E52B /* ViewController.swift in Sources */,
+				FAC8119B1F5E461D00F1D9C3 /* PlaceAnnotation.swift in Sources */,
 				FAF92C991EA8194F0070C5B2 /* PlaceTableViewCell.swift in Sources */,
 				FA59C9931E79CF38005A0BDA /* TabBarController.swift in Sources */,
 				FAA45A291F54B32800E6E78C /* Place.swift in Sources */,

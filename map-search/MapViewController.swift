@@ -9,12 +9,14 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AddressBook
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     // MARK: Properties
     
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var centerMyLocationButton: UIButton!
     let locationManager = CLLocationManager()
     var places = [Place]()
 
@@ -22,10 +24,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+       
         configMap()
         configLocationManager()
-        // Center Map
         centerUserLocation()
         
     }
@@ -38,23 +40,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         places = search.places
         
         // Add annotation
-        addAnnotations()
+        //addAnnotations()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-        
-    }
-    
     
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -85,6 +74,70 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     }
     
+    // MARK: MapViewDelegate
+    
+    // Add Annotations 
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        addAnnotations()
+    }
+    
+    //
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // Determine the selected location
+        let location = view.annotation as! PlaceAnnotation
+        // Options for maps
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        // Return mapItem with base in placemark for pass to "Maps App"
+        location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    // Custom Annotations
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? PlaceAnnotation {
+            let identifier = "pin"
+            let pin = UIImage(named: "point")
+            var annotationView: MKPinAnnotationView
+            if let dequeueView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                dequeueView.annotation = annotation
+                annotationView = dequeueView
+            }
+            else {
+                
+                let ratingControl = RatingControl()
+                ratingControl.itemSize = CGSize(width: 20, height: 20)
+                ratingControl.isUserInteractionEnabled = false
+                ratingControl.rating = annotation.rating
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.canShowCallout = true
+                annotationView.calloutOffset = CGPoint(x: -5, y: 5)
+                
+                annotationView.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure) as? UIView
+                //annotationView.leftCalloutAccessoryView = ratingControl as? UIView
+                //annotationView.leftCalloutAccessoryView = UIImageView(image: pin)
+                //annotationView.detailCalloutAccessoryView = ratingControl
+                
+                annotationView.pinTintColor = annotation.pinColor()
+            }
+            return annotationView
+        }
+        
+            return nil
+        
+        
+    }
+    
+    // MARK: IBActions
+    
+    
+    @IBAction func showUserLocation(_ sender: UIButton) {
+        centerUserLocation()
+    }
+    
     // MARK: Private Methods
     
     private func configMap(){
@@ -111,6 +164,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    private func configAnnotation(location: CLLocationCoordinate2D, title: String, subtitle: String) -> MKPointAnnotation {
+        
+        let customAnnotation: MKPointAnnotation = MKPointAnnotation()
+        
+        customAnnotation.coordinate = location
+        customAnnotation.title = title
+        customAnnotation.subtitle = subtitle
+        
+        return customAnnotation
+        
+    }
+    
+    private func centerUserLocation() {
+        let regionRadius: CLLocationDistance = 4000
+        let userLocation = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        let region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, regionRadius, regionRadius)
+        map.setRegion(region, animated: true)
+    }
+    
+    
+    
+   
+    
     private func addAnnotations () {
         
         map.removeAnnotations(map.annotations)
@@ -120,24 +196,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 var marker = CLLocationCoordinate2D()
                 marker.latitude = Double(row.latitude)
                 marker.longitude = Double(row.longitude)
+                
+                //let point = configAnnotation(location: marker, title: row.principalName, subtitle: String(row.rating))
+                let alternative: String
+                
+                if row.alternativeName != "" {
+                    alternative = row.alternativeName
+                }else {
+                    alternative = row.alternativeName2
+                }
+                
+                let pointPin = PlaceAnnotation(title: row.principalName, category: alternative, rating: row.rating, coordinate: marker)
+                /*
                 let pin = MKPointAnnotation()
                 pin.title = row.principalName
                 pin.subtitle = "\(row.latitude) & \(row.longitude)"
                 //pin.subtitle = "(\(userlocation.coordinate.latitude),\(userlocation.coordinate.longitude))"
                 pin.coordinate = marker
-                map.addAnnotation(pin)
+                
+                //let customPinAnnotation = MKPinAnnotationView(annotation: point, reuseIdentifier: "pin")
+                //map.addAnnotation(customPinAnnotation.annotation!)*/
+                map.addAnnotation(pointPin)
             }
 
         }
     }
     
-    private func centerUserLocation() {
-        let latitude = locationManager.location?.coordinate.latitude
-        let longitude = locationManager.location?.coordinate.longitude
-        let span = MKCoordinateSpanMake(0.075, 0.075)
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude!,longitude: longitude!), span: span)
-        map.setRegion(region, animated: true)
-    }
+    
 
     /*
     // MARK: - Navigation
@@ -148,5 +233,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
 
 }
