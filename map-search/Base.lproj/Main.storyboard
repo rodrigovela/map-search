@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="diP-d6-cEE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="diP-d6-cEE">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +56,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IeN-ZC-ZqF" id="uz9-d4-LmY">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="82.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm4-mt-Nej">
@@ -72,13 +72,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ8-Gu-jYo">
-                                                    <rect key="frame" x="369" y="40" width="37" height="14"/>
+                                                    <rect key="frame" x="369" y="40" width="37" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3fX-jI-02h" customClass="RatingControl" customModule="map_search" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="35" width="148" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="148" id="3Yy-3H-18B"/>
+                                                        <constraint firstAttribute="height" constant="44" id="XOz-gw-uJ4"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJe-yb-Auc">
                                                     <rect key="frame" x="356" y="8" width="50" height="17"/>
@@ -95,19 +99,16 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="3fX-jI-02h" firstAttribute="leading" secondItem="uz9-d4-LmY" secondAttribute="leadingMargin" id="3ak-9c-Wj9"/>
                                                 <constraint firstItem="gm4-mt-Nej" firstAttribute="leading" secondItem="uz9-d4-LmY" secondAttribute="leadingMargin" id="5aV-wR-8S9"/>
                                                 <constraint firstItem="TQ8-Gu-jYo" firstAttribute="top" secondItem="VJe-yb-Auc" secondAttribute="bottom" constant="15" id="9pz-lE-RdX"/>
-                                                <constraint firstItem="3fX-jI-02h" firstAttribute="top" secondItem="gm4-mt-Nej" secondAttribute="bottom" constant="7" id="DH2-gf-q2D"/>
                                                 <constraint firstItem="VJe-yb-Auc" firstAttribute="leading" secondItem="gm4-mt-Nej" secondAttribute="trailing" constant="5" id="I9s-Kx-j9G"/>
                                                 <constraint firstItem="VJe-yb-Auc" firstAttribute="leading" secondItem="gm4-mt-Nej" secondAttribute="trailing" constant="5" id="IDs-9q-Une"/>
+                                                <constraint firstItem="3fX-jI-02h" firstAttribute="leading" secondItem="uz9-d4-LmY" secondAttribute="leadingMargin" id="JhN-Rx-98u"/>
                                                 <constraint firstItem="VJe-yb-Auc" firstAttribute="top" secondItem="uz9-d4-LmY" secondAttribute="topMargin" id="LSd-Z4-BWd"/>
-                                                <constraint firstItem="3fX-jI-02h" firstAttribute="top" secondItem="gm4-mt-Nej" secondAttribute="bottom" constant="7" id="XEw-wr-rZl"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3fX-jI-02h" secondAttribute="bottom" constant="-4.3333333333333286" id="dP7-Yc-gd7"/>
-                                                <constraint firstItem="3fX-jI-02h" firstAttribute="leading" secondItem="uz9-d4-LmY" secondAttribute="leadingMargin" id="fli-Vi-BOf"/>
+                                                <constraint firstItem="TQ8-Gu-jYo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uz9-d4-LmY" secondAttribute="leadingMargin" id="MLn-nn-SAW"/>
+                                                <constraint firstItem="3fX-jI-02h" firstAttribute="top" secondItem="gm4-mt-Nej" secondAttribute="bottom" constant="7" id="o5C-eY-W3H"/>
                                                 <constraint firstItem="gm4-mt-Nej" firstAttribute="top" secondItem="uz9-d4-LmY" secondAttribute="topMargin" id="toz-kZ-uxf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VJe-yb-Auc" secondAttribute="trailing" id="uWe-ZN-P5B"/>
-                                                <constraint firstAttribute="trailing" secondItem="3fX-jI-02h" secondAttribute="trailing" constant="258" id="vlT-yr-Rlg"/>
                                                 <constraint firstItem="TQ8-Gu-jYo" firstAttribute="trailing" secondItem="uz9-d4-LmY" secondAttribute="trailingMargin" id="y4X-vb-zdh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -163,7 +164,7 @@
                                 <rect key="frame" x="327" y="232" width="66" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ch4-R9-9aa"/>
-                                    <constraint firstAttribute="width" constant="66.299999999999997" id="WWf-ke-KjF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="66.299999999999997" id="WWf-ke-KjF"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Enable">
@@ -262,6 +263,7 @@
                             <constraint firstItem="Xbv-el-J14" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IIP-LH-E4o"/>
                             <constraint firstItem="w7d-of-Lip" firstAttribute="leading" secondItem="eb8-Tc-eZ1" secondAttribute="trailing" constant="8" id="KS4-nR-Mrt"/>
                             <constraint firstItem="fY6-Hr-nT6" firstAttribute="top" secondItem="Fnh-iC-MMB" secondAttribute="bottom" constant="10" id="MzI-IP-8St"/>
+                            <constraint firstItem="Pbj-w4-ILd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QZJ-73-pIf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w7d-of-Lip" secondAttribute="trailing" id="RKW-mf-DDd"/>
                             <constraint firstItem="8t5-A4-9mX" firstAttribute="leading" secondItem="eb8-Tc-eZ1" secondAttribute="leading" id="RUf-pd-BeL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pbj-w4-ILd" secondAttribute="trailing" constant="1" id="WtO-yb-AM5"/>
@@ -273,6 +275,7 @@
                             <constraint firstAttribute="trailing" secondItem="Xbv-el-J14" secondAttribute="trailing" id="gph-lL-sRM"/>
                             <constraint firstItem="w7d-of-Lip" firstAttribute="top" secondItem="Pbj-w4-ILd" secondAttribute="bottom" constant="8" id="kAi-Fd-YRY"/>
                             <constraint firstItem="x4P-7r-GtI" firstAttribute="top" secondItem="tYb-v4-bZj" secondAttribute="bottom" constant="16" id="oKM-ZJ-Vpf"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fY6-Hr-nT6" secondAttribute="trailingMargin" id="tWf-zd-ZUs"/>
                             <constraint firstItem="Xbv-el-J14" firstAttribute="top" secondItem="8t5-A4-9mX" secondAttribute="bottom" constant="14" id="uFA-LV-JlS"/>
                             <constraint firstItem="Fnh-iC-MMB" firstAttribute="top" secondItem="DeV-Qf-FqA" secondAttribute="bottom" constant="10" id="vHU-O0-fQB"/>
                             <constraint firstItem="8t5-A4-9mX" firstAttribute="baseline" secondItem="x4P-7r-GtI" secondAttribute="baseline" id="wRz-5t-Y72"/>
@@ -374,7 +377,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-KT-xc8">
                                         <rect key="frame" x="0.0" y="0.66666666666668561" width="60" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="3Ku-hd-zxe"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="3Ku-hd-zxe"/>
                                             <constraint firstAttribute="height" constant="17" id="OFl-Gr-6KD"/>
                                         </constraints>
                                         <attributedString key="attributedText">
@@ -411,7 +414,7 @@
                                         <rect key="frame" x="0.0" y="0.66666666666668561" width="60" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="5gi-w9-hmt"/>
-                                            <constraint firstAttribute="width" constant="60" id="cfI-D4-Iai"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="cfI-D4-Iai"/>
                                         </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="longitude">
@@ -545,7 +548,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-kA-Jyl">
-                                <rect key="frame" x="20" y="163" width="374" height="18"/>
+                                <rect key="frame" x="20" y="163" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="name">
                                         <attributes>
@@ -557,7 +560,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-IR-env">
-                                <rect key="frame" x="20" y="196" width="374" height="17"/>
+                                <rect key="frame" x="20" y="197" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="alternative names">
                                         <attributes>
@@ -569,7 +572,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsM-0U-V5X">
-                                <rect key="frame" x="20" y="223" width="374" height="18"/>
+                                <rect key="frame" x="20" y="224" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="alternative 1">
                                         <attributes>
@@ -581,7 +584,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp5-yE-gyZ">
-                                <rect key="frame" x="20" y="251" width="374" height="18"/>
+                                <rect key="frame" x="20" y="253" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="alternative 2">
                                         <attributes>
@@ -593,7 +596,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-U9-RFq">
-                                <rect key="frame" x="20" y="284" width="374" height="17"/>
+                                <rect key="frame" x="20" y="287" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="DENUE code">
                                         <attributes>
@@ -606,7 +609,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGM-Ce-cvE">
-                                <rect key="frame" x="20" y="311" width="374" height="18"/>
+                                <rect key="frame" x="20" y="314" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="denue code">
                                         <attributes>
@@ -618,7 +621,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cd-x6-GMZ">
-                                <rect key="frame" x="20" y="371" width="374" height="18"/>
+                                <rect key="frame" x="20" y="375" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="foursquare code">
                                         <attributes>
@@ -630,7 +633,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8D-pI-LCb">
-                                <rect key="frame" x="20" y="344" width="374" height="17"/>
+                                <rect key="frame" x="20" y="348" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Foursquare code">
                                         <attributes>
@@ -643,7 +646,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHU-0M-CKQ">
-                                <rect key="frame" x="20" y="404" width="374" height="17"/>
+                                <rect key="frame" x="20" y="409" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Google Places code">
                                         <attributes>
@@ -656,7 +659,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8A-z0-eYh">
-                                <rect key="frame" x="20" y="431" width="374" height="18"/>
+                                <rect key="frame" x="20" y="436" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="google places code">
                                         <attributes>
@@ -668,7 +671,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQk-aA-3br">
-                                <rect key="frame" x="20" y="464" width="374" height="17"/>
+                                <rect key="frame" x="20" y="470" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="distance from current location">
                                         <attributes>
@@ -681,7 +684,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HY9-Td-ITM">
-                                <rect key="frame" x="20" y="491" width="374" height="18"/>
+                                <rect key="frame" x="20" y="497" width="374" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="distance">
                                         <attributes>
@@ -693,7 +696,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-3k-MEC">
-                                <rect key="frame" x="20" y="524" width="374" height="17"/>
+                                <rect key="frame" x="20" y="531" width="374" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="rating">
                                         <attributes>
@@ -705,7 +708,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hrj-Yu-hQa" customClass="RatingControl" customModule="map_search" customModuleProvider="target">
-                                <rect key="frame" x="133" y="551" width="148" height="44"/>
+                                <rect key="frame" x="133" y="558" width="148" height="44"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -790,10 +793,10 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-Qa-7CM">
-                                <rect key="frame" x="360" y="633" width="44" height="44"/>
+                                <rect key="frame" x="340" y="633" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="1WJ-od-sQ2"/>
-                                    <constraint firstAttribute="width" constant="44" id="qn8-yw-n6n"/>
+                                    <constraint firstAttribute="height" constant="44" id="YJX-Ao-WBG"/>
+                                    <constraint firstAttribute="width" constant="44" id="yok-dt-gPx"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="userLocation"/>
                                 <connections>
@@ -803,12 +806,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hlY-Qa-7CM" firstAttribute="trailing" secondItem="wWz-St-In9" secondAttribute="trailingMargin" constant="10" id="3jK-c1-bgi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hlY-Qa-7CM" secondAttribute="trailing" constant="10" id="DRw-NP-gRn"/>
                             <constraint firstItem="306-2j-Ldb" firstAttribute="top" secondItem="tkP-vh-gbh" secondAttribute="bottom" id="PDe-Ej-bDF"/>
                             <constraint firstItem="306-2j-Ldb" firstAttribute="leading" secondItem="wWz-St-In9" secondAttribute="leading" id="VN7-qL-GAo"/>
                             <constraint firstItem="5Xz-gM-xrB" firstAttribute="top" secondItem="306-2j-Ldb" secondAttribute="bottom" id="aWM-7z-xGA"/>
+                            <constraint firstItem="5Xz-gM-xrB" firstAttribute="top" secondItem="hlY-Qa-7CM" secondAttribute="bottom" constant="10" id="dUC-Os-T9f"/>
                             <constraint firstAttribute="trailing" secondItem="306-2j-Ldb" secondAttribute="trailing" id="lVk-kT-qIo"/>
-                            <constraint firstItem="5Xz-gM-xrB" firstAttribute="top" secondItem="hlY-Qa-7CM" secondAttribute="bottom" constant="10" id="rVY-GR-iCw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="TVE-b0-4Oy"/>
@@ -1179,7 +1182,7 @@
                 <navigationController id="lne-2o-ceo" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vm1-of-H5g">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1223,7 +1226,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="diP-d6-cEE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u9R-xf-GJH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
